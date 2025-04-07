@@ -13,7 +13,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/backend
 
+COPY entrypoint.sh /app/backend/entrypoint.sh
+RUN chmod +x /app/backend/entrypoint.sh
+
 EXPOSE 8000
 
+ENTRYPOINT ["/app/backend/entrypoint.sh"]
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
-
